@@ -1,15 +1,28 @@
-import requests
+# bot.py
+import os
 
-# username = input()
-# tagline = input()
+import discord
+from dotenv import load_dotenv
 
-username = 'racecarjoe'
-tagline = 'NA1'
+load_dotenv()
+TOKEN = os.getenv('DISCORD_TOKEN')
 
-response = requests.get(f"https://api.henrikdev.xyz/valorant/v1/mmr/na/{username}/{tagline}")
+client = discord.Client(intents=discord.Intents.all())
 
-data = response.json()['data']
+@client.event
+async def on_ready():
+    print(f'{client.user} has connected to Discord!')
 
-print(data['currenttierpatched'])
 
 
+@client.event
+async def on_message(message):
+    if message.author == client.user:
+        return
+
+    if message.content.startswith('$hello'):
+        await message.channel.send('hi rank')
+    print(message)
+
+
+client.run(TOKEN)
