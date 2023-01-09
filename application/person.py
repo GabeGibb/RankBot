@@ -18,6 +18,5 @@ class Person:
     def set_lol_info(self, user):
         id = self.lolIDs[user]
         self.lolInfo[id] = get_lol_info(id)
-        print(self.lolInfo)
 
         
