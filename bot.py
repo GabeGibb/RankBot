@@ -2,30 +2,42 @@
 import os
 
 import discord
+from discord.ext import commands
 from dotenv import load_dotenv
-from discord_io.handle_msg import *
 from discord_io.handle_output import *
 from application.app import App
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 
-client = discord.Client(intents=discord.Intents.all())
+
 app = App()
-
-@client.event
-async def on_ready():
-    print(f'{client.user} has connected to Discord!')
+bot = commands.Bot(command_prefix='$', intents=discord.Intents.all())
 
 
-@client.event
-async def on_message(message):
-    if message.author == client.user:
-        return
 
-    event = decide_command(message)
-    execute_output(event)
+@bot.command()
+async def add(ctx, game, userName):
+    event = None
     
+    if game.lower() == 'lol':
+        event = app.add_lol_acct(userName) 
+
+    response = get_output(event)
+    await ctx.send(response)
 
 
-client.run(TOKEN)
+@bot.command()
+async def show(ctx, game, userName=None):
+    event = None
+
+    if game.lower() == 'lol':
+        if userName is None:
+            event = app.get_lol_accts()
+        else:
+            event = app.get_lol_acct(userName) 
+
+    response = get_output(event)
+    await ctx.send(response)
+
+bot.run(TOKEN)

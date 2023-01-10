@@ -14,13 +14,12 @@ def find_lol_id(user):
 
 def get_lol_info(id):
     response = get(f'https://na1.api.riotgames.com/lol/league/v4/entries/by-summoner/{id}?api_key={RIOT_KEY}').json()
-    return choose_lol_info(response)
+    return set_lol_info(response)
 
 
-def choose_lol_info(data):
+def set_lol_info(data):
     dict = {}
-    keepData = ['tier', 'rank', 'leaguePoints', 'wins', 'losses']
-
+    keepData = ['summonerName', 'tier', 'rank', 'leaguePoints', 'wins', 'losses']
 
     for d in data:
         attrDict = {}
