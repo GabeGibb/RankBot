@@ -17,10 +17,11 @@ def get_lol_info(id):
     return set_lol_info(response)
 
 
+
 def set_lol_info(data):
     dict = {}
     keepData = ['tier', 'rank', 'leaguePoints', 'wins', 'losses']
-
+    
     for d in data:
         attrDict = {}
         mode = d['queueType']

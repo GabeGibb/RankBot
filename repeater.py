@@ -1,39 +1,61 @@
 
 from discord.ext import commands, tasks
 
-import time as t
+from application.events import *
 
 
 class Repeater(commands.Cog):
     def __init__(self, bot, app):
         self.bot = bot
         self.app = app
-        self.running = False
+        self.channel = None
 
 
-    @commands.command()
-    async def start(self, ctx):
-        if self.running:
-            return
-        self.ctx = ctx
-        self.running = True
-        self.get_data.start()
-
-
-
-    @tasks.loop(seconds=3.0)
+    @tasks.loop(seconds=60.0)
     async def get_data(self):
-        if not self.running:
-            return
+        lolDict = {'IRON': 0, 'BRONZE': 1, 'SILVER': 2, 'GOLD': 3, 'PLATINUM': 4, 'DIAMOND': 5, 'MASTER': 6, 'GRANDMASTER': 7, 'CHALLENGER': 8}
+        numDict = {'I': 1, 'II': 2, 'III': 3, 'IV': 4}
 
         for key, value in self.app.lolAccts.items():
-            if value.prevInfo == value.info:
-                await self.ctx.send(f'{key} same')
+            value.set_info()
+            for p, c in zip(value.prevInfo.items(), value.info.items()):
+                
+                mode = c[0]
+                prev = p[1]
+                cur = c[1]
 
-          
-    @commands.command()
-    async def stop(self, ctx):
-        self.running = False
+                msg = ''
+                rankChange = False
+                if prev['tier'] == cur['tier']:
+                    if prev['rank'] == cur['rank']:
+                        if prev['leaguePoints'] == cur['leaguePoints']:
+                            continue
+                        else:
+                            change = cur['leaguePoints'] - prev['leaguePoints']
+                            if change > 0:
+                                msg = f'Congrats {key}! You just gained {change} lp'
+                            else:
+                                msg = f'Unlucky {key}! You just lost {abs(change)} lp. Better luck next time!'
+                    else:
+                        change = numDict[cur['rank']] - numDict[prev['rank']]
+                        rankChange = True
+                else:
+                    pRank = lolDict[prev['tier']]
+                    cRank = lolDict[cur['tier']]
+                    change = cRank - pRank
+                    rankChange = True
+                if rankChange:
+                    if change > 0:
+                        msg = f'Congrats {key}! You just got promotted to {cur["tier"]} {cur["rank"]}'
+                    else:
+                        msg = f'Unlucky {key}! You just got demoted to {cur["tier"]} {cur["rank"]}'
+
+                await self.channel.send(f'{mode}\n{msg}')
+
+
+
+    
+
 
 
   

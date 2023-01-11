@@ -1,6 +1,6 @@
-class AccAdded:
-    def __init__(self, acct):
-        self.acct = acct
+# class AccAdded:
+#     def __init__(self, acct):
+#         self.acct = acct
 
 class ShowAcc:
     def __init__(self, acct):
@@ -12,3 +12,8 @@ class ShowAccs:
 
 class Commands:
     pass
+
+# class RankChange:
+#     def __init__(self, start, end):
+#         self.start = start
+#         self.end = end

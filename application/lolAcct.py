@@ -23,12 +23,6 @@ class LolAcct:
         self.set_info()
         self.startInfo = self.info
     
-    def prev_elo_change(self):
-        return self.info['leaguePoints'] - self.prevInfo['leaguePoints']
-
-    def last_elo_change(self):
-        return self.info['leaguePoints'] - self.startInfo['leaguePoints']
-    
 
 
 

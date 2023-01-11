@@ -6,13 +6,13 @@ def get_output(event):
         return ''
     
     elif isinstance(event, Commands):
-        msg = 'lol add username\n'\
-        'lol show username\n'\
-        'lol show'
+        msg = 'add lol username\n'\
+        'show lol username\n'\
+        'show lol'
         return discord.Embed(description=f"""{msg}""", color=0x00ff00)
 
-    elif isinstance(event, AccAdded):
-        return f'Ok {event.acct.name} was added.'
+    # elif isinstance(event, AccAdded):
+    #     return f'Ok {event.acct.name} was added.'
 
         
     elif isinstance(event, ShowAcc):
