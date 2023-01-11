@@ -19,7 +19,7 @@ def get_lol_info(id):
 
 def set_lol_info(data):
     dict = {}
-    keepData = ['summonerName', 'tier', 'rank', 'leaguePoints', 'wins', 'losses']
+    keepData = ['tier', 'rank', 'leaguePoints', 'wins', 'losses']
 
     for d in data:
         attrDict = {}

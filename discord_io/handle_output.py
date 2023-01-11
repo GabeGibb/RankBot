@@ -4,6 +4,12 @@ import discord
 def get_output(event):
     if event is None:
         return ''
+    
+    elif isinstance(event, Commands):
+        msg = 'lol add username\n'\
+        'lol show username\n'\
+        'lol show'
+        return discord.Embed(description=f"""{msg}""", color=0x00ff00)
 
     elif isinstance(event, AccAdded):
         return f'Ok {event.acct.name} was added.'

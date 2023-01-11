@@ -9,3 +9,6 @@ class ShowAcc:
 class ShowAccs:
     def __init__(self, accts):
         self.accts = accts
+
+class Commands:
+    pass
