@@ -6,8 +6,7 @@ def get_output(event):
         return ''
     
     elif isinstance(event, Commands):
-        msg = 'add lol username\n'\
-        'show lol username\n'\
+        msg = 'show lol username\n'\
         'show lol'
         return discord.Embed(description=f"""{msg}""", color=0x00ff00)
 

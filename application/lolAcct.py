@@ -19,6 +19,13 @@ class LolAcct:
         self.prevInfo = self.info
         self.info = get_lol_info(self.id)
 
+        pKeys = list(self.prevInfo.keys())
+        pKeys.sort()
+        self.prevInfo = {i: self.prevInfo[i] for i in pKeys}
+        cKeys = list(self.info.keys())
+        cKeys.sort()
+        self.info = {i: self.info[i] for i in cKeys}
+
     def set_end_of_day(self):
         self.set_info()
         self.startInfo = self.info
