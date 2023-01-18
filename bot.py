@@ -1,15 +1,15 @@
 # bot.py
 import os
 from dotenv import load_dotenv
+import pandas as pd
+
 
 import discord
 from discord.ext import commands
 
 from application.app import App
-
 from updater import Updater
 
-import pandas as pd
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
