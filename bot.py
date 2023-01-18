@@ -39,6 +39,10 @@ async def on_ready():
     updater.val_update.start()
 
 
+@bot.command()
+async def status(ctx):
+    await ctx.send('Bot is up and running!')
+
 # @bot.command()
 # async def add(ctx, game, userName):
 #     event = None
@@ -64,6 +68,8 @@ async def on_ready():
 
 #     response = get_output(event)
 #     await ctx.send(response)
+
+
 
 
 # @bot.command()
