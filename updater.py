@@ -2,8 +2,6 @@
 import discord
 from discord.ext import commands, tasks
 
-from application.events import *
-
 
 class Updater(commands.Cog):
     def __init__(self, bot, app):

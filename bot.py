@@ -5,8 +5,6 @@ from dotenv import load_dotenv
 import discord
 from discord.ext import commands
 
-from discord_io.handle_output import *
-from application.events import *
 from application.app import App
 
 from updater import Updater
