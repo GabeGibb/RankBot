@@ -15,26 +15,28 @@ class Updater(commands.Cog):
     async def val_update(self):
         for key, value in self.app.valAccts.items():
             value.set_info()
-            for prev, cur in zip(value.prevInfo.items(), value.info.items()):
-                msg = ''
-                if prev['elo'] == cur['elo']:
-                    continue
-                
-                change = cur['elo'] - prev['elo']
-                if prev['currenttierpatched'] != cur['currenttierpatched']:
-                    if change > 0:
-                        msg = f'{key} just promoted to {cur["currenttierpatched"]}'
-                    else:
-                        msg = f'{key} just demoted to {cur["currenttierpatched"]}'
-                
+            prev = value.prevInfo
+            cur = value.info
+            
+            msg = ''
+            if prev['elo'] == cur['elo']:
+                continue
+            
+            change = cur['elo'] - prev['elo']
+            if prev['currenttierpatched'] != cur['currenttierpatched']:
+                if change > 0:
+                    msg = f'{key} just promoted to {cur["currenttierpatched"]}'
                 else:
-                    if change > 0:
-                        msg = f'{key} just gained {cur["mmr_change_to_last_game"]}RR'
-                    else:
-                         msg = f'{key} just lost {cur["mmr_change_to_last_game"]}RR'
+                    msg = f'{key} just demoted to {cur["currenttierpatched"]}'
+            
+            else:
+                if change > 0:
+                    msg = f'{key} just gained {cur["mmr_change_to_last_game"]}RR'
+                else:
+                    msg = f'{key} just lost {cur["mmr_change_to_last_game"]}RR'
 
-                botMsg = discord.Embed(description=f"""VALORANT RANKED\n{msg}""", color=0x00ff00)
-                await self.channel.send(embed=botMsg)
+            botMsg = discord.Embed(description=f"""VALORANT RANKED\n{msg}""", color=0xfa4454)
+            await self.channel.send(embed=botMsg)
 
 
 
@@ -81,7 +83,7 @@ class Updater(commands.Cog):
                         msg = f'{key} just demoted to {cur["tier"]} {cur["rank"]}'
 
 
-                botMsg = discord.Embed(description=f"""{mode}\n{msg}""", color=0x00ff00)
+                botMsg = discord.Embed(description=f"""{mode}\n{msg}""", color=0x445fa5)
                 await self.channel.send(embed=botMsg)
 
 
