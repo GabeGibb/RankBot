@@ -26,9 +26,9 @@ class LolAcct:
         cKeys.sort()
         self.info = {i: self.info[i] for i in cKeys}
 
-    def set_end_of_day(self):
-        self.set_info()
-        self.startInfo = self.info
+    # def set_end_of_day(self):
+    #     self.set_info()
+    #     self.startInfo = self.info
     
 
 

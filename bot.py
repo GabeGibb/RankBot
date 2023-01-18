@@ -9,7 +9,7 @@ from discord_io.handle_output import *
 from application.events import *
 from application.app import App
 
-from repeater import Repeater
+from updater import Updater
 
 import pandas as pd
 
@@ -18,22 +18,27 @@ TOKEN = os.getenv('DISCORD_TOKEN')
 
 app = App()
 bot = commands.Bot(command_prefix='$', intents=discord.Intents.all())
-rep = Repeater(bot, app)
+updater = Updater(bot, app)
 
-players = pd.read_csv('players.csv')['lol']
-
-for p in players:
+lolPlayers = pd.read_csv('lolPlayers.csv')['lol']
+for p in lolPlayers:
     print(p)
     app.add_lol_acct(p)
 
+valPlayers = pd.read_csv('valPlayers.csv')['val']
+for p in valPlayers:
+    user, tag = p.split('#')
+    print(user, tag)
+    app.add_val_acct(user, tag)
 
 @bot.event
 async def on_ready():
-    await bot.add_cog(rep)
+    await bot.add_cog(updater)
     
     channel = bot.get_channel(963660571029417996)
-    rep.channel = channel
-    rep.get_data.start()
+    updater.channel = channel
+    updater.lol_update.start()
+    updater.val_update.start()
 
 
 # @bot.command()
@@ -47,24 +52,26 @@ async def on_ready():
 #     await ctx.send(response)
 
 
-@bot.command()
-async def show(ctx, game, userName=None):
-    event = None
+# @bot.command()
+# async def show(ctx, game, userName=None):
+#     event = None
 
-    if game.lower() == 'lol':
-        if userName is None:
-            event = app.get_lol_accts()
-        else:
-            event = app.get_lol_acct(userName) 
+#     if game.lower() == 'lol':
+#         if userName is None:
+#             event = app.get_lol_accts()
+#         else:
+#             event = app.get_lol_acct(userName) 
+#     else:
+#         return
 
-    response = get_output(event)
-    await ctx.send(response)
+#     response = get_output(event)
+#     await ctx.send(response)
 
 
-@bot.command()
-async def helpme(ctx):
-    response = get_output(Commands())
-    await ctx.send(embed=response)
+# @bot.command()
+# async def helpme(ctx):
+#     response = get_output(Commands())
+#     await ctx.send(embed=response)
 
 
 bot.run(TOKEN)
