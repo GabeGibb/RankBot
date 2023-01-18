@@ -10,6 +10,7 @@ from discord.ext import commands
 from application.app import App
 from updater import Updater
 
+
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 
