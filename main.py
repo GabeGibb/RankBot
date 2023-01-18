@@ -41,7 +41,18 @@ async def on_ready():
 
 @bot.command()
 async def status(ctx):
-    await ctx.send('Bot is up and running!')
+    msg = ''
+    msg += 'LEAGUE\n'
+    for name in app.lolAccts:
+        msg += f'--{name}\n'
+    msg += 'VALORANT\n'
+    for name in app.valAccts:
+        msg += f'--{name}\n'
+
+    msg = 'Bot is up and running!\n' + msg
+    msg = discord.Embed(description=f"""{msg}""")
+    
+    await ctx.send(embed=msg)
 
 # @bot.command()
 # async def add(ctx, game, userName):
