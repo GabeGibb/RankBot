@@ -18,16 +18,16 @@ app = App()
 bot = commands.Bot(command_prefix='*', intents=discord.Intents.all())
 updater = Updater(bot, app)
 
-# lolPlayers = pd.read_csv('players/lolPlayers.csv')['lol']
-# for p in lolPlayers:
-#     print(p)
-#     app.add_lol_acct(p)
+lolPlayers = pd.read_csv('players/lolPlayers.csv')['lol']
+for p in lolPlayers:
+    print(p)
+    app.add_lol_acct(p)
 
-# valPlayers = pd.read_csv('players/valPlayers.csv')['val']
-# for p in valPlayers:
-#     user, tag = p.split('#')
-#     print(user, tag)
-#     app.add_val_acct(user, tag)
+valPlayers = pd.read_csv('players/valPlayers.csv')['val']
+for p in valPlayers:
+    user, tag = p.split('#')
+    print(user, tag)
+    app.add_val_acct(user, tag)
 
 @bot.event
 async def on_ready():
