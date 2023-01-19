@@ -15,7 +15,7 @@ load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 
 app = App()
-bot = commands.Bot(command_prefix='$', intents=discord.Intents.all())
+bot = commands.Bot(command_prefix='*', intents=discord.Intents.all())
 updater = Updater(bot, app)
 
 lolPlayers = pd.read_csv('players/lolPlayers.csv')['lol']
