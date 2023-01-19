@@ -33,7 +33,7 @@ for p in valPlayers:
 async def on_ready():
     await bot.add_cog(updater)
     
-    channel = bot.get_channel(963660571029417996)
+    channel = bot.get_channel(1065420015274315887)
     updater.channel = channel
     updater.lol_update.start()
     updater.val_update.start()
