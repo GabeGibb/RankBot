@@ -17,12 +17,13 @@ def get_lol_info(id):
     return set_lol_info(response)
 
 
-
 def set_lol_info(data):
     dict = {}
     keepData = ['tier', 'rank', 'leaguePoints', 'wins', 'losses']
     
     for d in data:
+        # if d['queueType'] == 'RANKED_TFT_DOUBLE_UP':
+        #     continue
         attrDict = {}
         mode = d['queueType']
         
@@ -36,3 +37,5 @@ def set_lol_info(data):
 
 
 
+# x = get_lol_info(find_lol_id('Marethyu31415'))
+# print(x)

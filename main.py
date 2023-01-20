@@ -37,7 +37,7 @@ async def on_ready():
     updater.channel = channel
     updater.lol_update.start()
     updater.val_update.start()
-    await updater.channel.send('Connected!')
+    # await updater.channel.send('Connected!')
 
 
 @bot.command()
