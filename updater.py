@@ -37,7 +37,7 @@ class Updater(commands.Cog):
             
             if key in ('DARKCHERIZARD', 'erinn', 'ATTACK ATTACK'):
                     msg += '\nValorant, more like waste of time LOL!'
-
+            print(msg)
             botMsg = discord.Embed(description=f"""VALORANT RANKED\n{msg}""", color=0xfa4454)
             await self.channel.send(embed=botMsg)
 
