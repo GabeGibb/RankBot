@@ -35,7 +35,7 @@ class Updater(commands.Cog):
                 else:
                     msg = f'{key} just lost {abs(cur["mmr_change_to_last_game"])}RR'
             
-            if key in ('DARKCHERIZARD', 'ItsErinnnn', 'ATTACK ATTACK'):
+            if key in ('DARKCHERIZARD', 'erinn', 'ATTACK ATTACK'):
                     msg += '\nValorant, more like waste of time LOL!'
 
             botMsg = discord.Embed(description=f"""VALORANT RANKED\n{msg}""", color=0xfa4454)
