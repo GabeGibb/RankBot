@@ -79,7 +79,10 @@ class Updater(commands.Cog):
                     else:
                         msg = f'{key} just demoted to {cur["tier"]} {cur["rank"]}'
 
-
+                
+                if key == 'DARKCHERIZARD':
+                    msg += '\nRegardless of the outcome, look at this loser playing League of Legends LOL!'
+                
                 botMsg = discord.Embed(description=f"""{mode}\n{msg}""", color=0x445fa5)
                 await self.channel.send(embed=botMsg)
 
