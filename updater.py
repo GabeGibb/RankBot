@@ -31,7 +31,7 @@ class Updater(commands.Cog):
                 if change > 0:
                     msg = f'{key} just gained {cur["mmr_change_to_last_game"]}RR'
                 else:
-                    msg = f'{key} just lost {cur["mmr_change_to_last_game"]}RR'
+                    msg = f'{key} just lost {abs(cur["mmr_change_to_last_game"])}RR'
 
             botMsg = discord.Embed(description=f"""VALORANT RANKED\n{msg}""", color=0xfa4454)
             await self.channel.send(embed=botMsg)
