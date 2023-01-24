@@ -1,6 +1,7 @@
 
 import discord
 from discord.ext import commands, tasks
+from asyncio import sleep
 
 
 class Updater(commands.Cog):
@@ -12,6 +13,7 @@ class Updater(commands.Cog):
     @tasks.loop(seconds=60.0)
     async def val_update(self):
         for key, value in self.app.valAccts.items():
+            sleep(0)
             value.set_info()
             prev = value.prevInfo
             cur = value.info
@@ -44,6 +46,7 @@ class Updater(commands.Cog):
         numDict = {'I': 1, 'II': 2, 'III': 3, 'IV': 4}
 
         for key, value in self.app.lolAccts.items():
+            sleep(0)
             value.set_info()
             
             for p, c in zip(value.prevInfo.items(), value.info.items()):
