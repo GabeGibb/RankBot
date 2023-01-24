@@ -9,7 +9,7 @@ class Updater(commands.Cog):
         self.app = app
         self.channel = None
 
-    @tasks.loop(seconds=120.0)
+    @tasks.loop(seconds=60.0)
     async def val_update(self):
         for key, value in self.app.valAccts.items():
             value.set_info()
@@ -38,7 +38,7 @@ class Updater(commands.Cog):
 
 
 
-    @tasks.loop(seconds=120.0)
+    @tasks.loop(seconds=60.0)
     async def lol_update(self):
         lolDict = {'IRON': 0, 'BRONZE': 1, 'SILVER': 2, 'GOLD': 3, 'PLATINUM': 4, 'DIAMOND': 5, 'MASTER': 6, 'GRANDMASTER': 7, 'CHALLENGER': 8}
         numDict = {'I': 1, 'II': 2, 'III': 3, 'IV': 4}
@@ -82,7 +82,7 @@ class Updater(commands.Cog):
                 
                 if key == 'DARKCHERIZARD':
                     msg += '\nRegardless of the outcome, look at this loser playing League of Legends LOL!'
-                
+                print(msg)
                 botMsg = discord.Embed(description=f"""{mode}\n{msg}""", color=0x445fa5)
                 await self.channel.send(embed=botMsg)
 
