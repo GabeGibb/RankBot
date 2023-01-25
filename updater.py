@@ -2,7 +2,7 @@
 import discord
 from discord.ext import commands, tasks
 from asyncio import sleep
-
+from random import choice
 
 class Updater(commands.Cog):
     def __init__(self, bot, app):
@@ -37,7 +37,10 @@ class Updater(commands.Cog):
                         msg = f'{key} just lost {abs(cur["mmr_change_to_last_game"])}RR'
                 
                 if key in ('DARKCHERIZARD', 'erinn', 'ATTACK ATTACK'):
-                        msg += '\nImagine playing valorant LOL!'
+                    if change > 0:
+                            msg += f'\n{self.get_winsult()}'
+                    else:
+                        msg += f'\n{self.get_losesult()}'
                 print(msg)
                 botMsg = discord.Embed(description=f"""VALORANT RANKED\n{msg}""", color=0xfa4454)
                 await self.channel.send(embed=botMsg)
@@ -91,7 +94,11 @@ class Updater(commands.Cog):
 
                     
                     if key == 'DARKCHERIZARD':
-                        msg += '\nRegardless of the outcome, look at this loser playing League of Legends LOL!'
+                        if change > 0:
+                            msg += f'\n{self.get_winsult()}'
+                        else:
+                            msg += f'\n{self.get_losesult()}'
+
                     print(msg)
                     botMsg = discord.Embed(description=f"""{mode}\n{msg}""", color=0x445fa5)
                     await self.channel.send(embed=botMsg)
@@ -99,8 +106,27 @@ class Updater(commands.Cog):
                 print(key, 'error')
 
 
-
+    def get_winsult(self):
+        insults = [
+            "Always remember to get some fresh air!",
+            "How many ranked points will it take to get some bitches.",
+            "Nice one, NOT!",
+            "Keep it up!",
+            "Rankbot is very proud of you ;)."
+        ]
+        
+        return choice(insults)
     
+    def get_losesult(self):
+        insults = [
+            "Better luck next time buddy.",
+            "Oof.",
+            "99 percent of gamblers quit before they hit big. Play again!",
+            "Can't end on a loss!",
+            "Keep it up!"
+        ]
+        
+        return choice(insults)
 
 
 
