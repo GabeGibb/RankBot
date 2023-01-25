@@ -14,7 +14,10 @@ class Updater(commands.Cog):
     async def val_update(self):
         for key, value in self.app.valAccts.items():
             await sleep(0)
-            value.set_info()
+            try:
+                value.set_info()
+            except:
+                continue
             prev = value.prevInfo
             cur = value.info
             
@@ -50,7 +53,10 @@ class Updater(commands.Cog):
 
         for key, value in self.app.lolAccts.items():
             await sleep(0)
-            value.set_info()
+            try:
+                value.set_info()
+            except:
+                continue
             
             for p, c in zip(value.prevInfo.items(), value.info.items()):
                 mode = c[0]

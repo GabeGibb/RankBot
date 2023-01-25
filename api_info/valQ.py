@@ -8,3 +8,5 @@ def get_val_info(username, tagline):
 
 
 
+# print(get_val_info('erinn', 'mommy'))
+# print(get_val_info('kachatakoowl', 'NA1'))
