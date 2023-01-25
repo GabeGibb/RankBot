@@ -42,7 +42,7 @@ class Updater(commands.Cog):
                 botMsg = discord.Embed(description=f"""VALORANT RANKED\n{msg}""", color=0xfa4454)
                 await self.channel.send(embed=botMsg)
             except:
-                continue
+                print(key, 'error')
 
 
 
@@ -96,7 +96,7 @@ class Updater(commands.Cog):
                     botMsg = discord.Embed(description=f"""{mode}\n{msg}""", color=0x445fa5)
                     await self.channel.send(embed=botMsg)
             except:
-                continue
+                print(key, 'error')
 
 
 
