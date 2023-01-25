@@ -16,33 +16,33 @@ class Updater(commands.Cog):
             await sleep(0)
             try:
                 value.set_info()
+                prev = value.prevInfo
+                cur = value.info
+                
+                msg = ''
+                if prev['elo'] == cur['elo']:
+                    continue
+                
+                change = cur['elo'] - prev['elo']
+                if prev['currenttierpatched'] != cur['currenttierpatched']:
+                    if change > 0:
+                        msg = f'{key} just promoted to {cur["currenttierpatched"]}'
+                    else:
+                        msg = f'{key} just demoted to {cur["currenttierpatched"]}'
+                
+                else:
+                    if change > 0:
+                        msg = f'{key} just gained {cur["mmr_change_to_last_game"]}RR'
+                    else:
+                        msg = f'{key} just lost {abs(cur["mmr_change_to_last_game"])}RR'
+                
+                if key in ('DARKCHERIZARD', 'erinn', 'ATTACK ATTACK'):
+                        msg += '\nValorant, more like waste of time LOL!'
+                print(msg)
+                botMsg = discord.Embed(description=f"""VALORANT RANKED\n{msg}""", color=0xfa4454)
+                await self.channel.send(embed=botMsg)
             except:
                 continue
-            prev = value.prevInfo
-            cur = value.info
-            
-            msg = ''
-            if prev['elo'] == cur['elo']:
-                continue
-            
-            change = cur['elo'] - prev['elo']
-            if prev['currenttierpatched'] != cur['currenttierpatched']:
-                if change > 0:
-                    msg = f'{key} just promoted to {cur["currenttierpatched"]}'
-                else:
-                    msg = f'{key} just demoted to {cur["currenttierpatched"]}'
-            
-            else:
-                if change > 0:
-                    msg = f'{key} just gained {cur["mmr_change_to_last_game"]}RR'
-                else:
-                    msg = f'{key} just lost {abs(cur["mmr_change_to_last_game"])}RR'
-            
-            if key in ('DARKCHERIZARD', 'erinn', 'ATTACK ATTACK'):
-                    msg += '\nValorant, more like waste of time LOL!'
-            print(msg)
-            botMsg = discord.Embed(description=f"""VALORANT RANKED\n{msg}""", color=0xfa4454)
-            await self.channel.send(embed=botMsg)
 
 
 
@@ -55,48 +55,48 @@ class Updater(commands.Cog):
             await sleep(0)
             try:
                 value.set_info()
+            
+                for p, c in zip(value.prevInfo.items(), value.info.items()):
+                    mode = c[0]
+                    prev = p[1]
+                    cur = c[1]
+                    if prev['wins'] == cur['wins'] and prev['losses'] == cur['losses']:
+                        continue
+
+                    msg = ''
+                    rankChange = False
+
+                    if prev['tier'] != cur['tier']:
+                        pRank = lolDict[prev['tier']]
+                        cRank = lolDict[cur['tier']]
+                        change = cRank - pRank
+                        rankChange = True 
+
+                    elif prev['rank'] != cur['rank']:
+                        change = numDict[cur['rank']] - numDict[prev['rank']]
+                        rankChange = True
+
+                    elif prev['leaguePoints'] != cur['leaguePoints']:
+                        change = cur['leaguePoints'] - prev['leaguePoints']
+                        if change > 0:
+                            msg = f'{key} just gained {change}lp'
+                        else:
+                            msg = f'{key} just lost {abs(change)}lp'
+
+                    if rankChange:
+                        if change > 0:
+                            msg = f'{key} just promotted to {cur["tier"]} {cur["rank"]}'
+                        else:
+                            msg = f'{key} just demoted to {cur["tier"]} {cur["rank"]}'
+
+                    
+                    if key == 'DARKCHERIZARD':
+                        msg += '\nRegardless of the outcome, look at this loser playing League of Legends LOL!'
+                    print(msg)
+                    botMsg = discord.Embed(description=f"""{mode}\n{msg}""", color=0x445fa5)
+                    await self.channel.send(embed=botMsg)
             except:
                 continue
-            
-            for p, c in zip(value.prevInfo.items(), value.info.items()):
-                mode = c[0]
-                prev = p[1]
-                cur = c[1]
-                if prev['wins'] == cur['wins'] and prev['losses'] == cur['losses']:
-                    continue
-
-                msg = ''
-                rankChange = False
-
-                if prev['tier'] != cur['tier']:
-                    pRank = lolDict[prev['tier']]
-                    cRank = lolDict[cur['tier']]
-                    change = cRank - pRank
-                    rankChange = True 
-
-                elif prev['rank'] != cur['rank']:
-                    change = numDict[cur['rank']] - numDict[prev['rank']]
-                    rankChange = True
-
-                elif prev['leaguePoints'] != cur['leaguePoints']:
-                    change = cur['leaguePoints'] - prev['leaguePoints']
-                    if change > 0:
-                        msg = f'{key} just gained {change}lp'
-                    else:
-                        msg = f'{key} just lost {abs(change)}lp'
-
-                if rankChange:
-                    if change > 0:
-                        msg = f'{key} just promotted to {cur["tier"]} {cur["rank"]}'
-                    else:
-                        msg = f'{key} just demoted to {cur["tier"]} {cur["rank"]}'
-
-                
-                if key == 'DARKCHERIZARD':
-                    msg += '\nRegardless of the outcome, look at this loser playing League of Legends LOL!'
-                print(msg)
-                botMsg = discord.Embed(description=f"""{mode}\n{msg}""", color=0x445fa5)
-                await self.channel.send(embed=botMsg)
 
 
 
