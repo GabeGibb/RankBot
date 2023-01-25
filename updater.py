@@ -109,7 +109,7 @@ class Updater(commands.Cog):
     def get_winsult(self):
         insults = [
             "Always remember to get some fresh air!",
-            "How many ranked points will it take to get some bitches.",
+            "How many ranked points will it take to get some bitches?",
             "Nice one, NOT!",
             "Keep it up!",
             "Rankbot is very proud of you ;)."
