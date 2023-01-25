@@ -121,7 +121,7 @@ class Updater(commands.Cog):
         insults = [
             "Better luck next time buddy.",
             "Oof.",
-            "99 percent of gamblers quit before they hit big. Play again!",
+            "99 percent of gamblers quit before they win big. Play again!",
             "Can't end on a loss!",
             "Keep it up!"
         ]
