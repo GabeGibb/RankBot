@@ -1,4 +1,4 @@
-import requests
+from requests import get
 
 import os
 from dotenv import load_dotenv
@@ -8,7 +8,7 @@ TOKEN = os.getenv('VAL_KEY')
 
 def get_val_info(username, tagline):
     headers = {'Authorization': TOKEN}
-    response = requests.get(f"https://api.henrikdev.xyz/valorant/v1/mmr/na/{username}/{tagline}", headers=headers)
+    response = get(f"https://api.henrikdev.xyz/valorant/v1/mmr/na/{username}/{tagline}", headers=headers)
     data = response.json()['data']
     return data
 
