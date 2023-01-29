@@ -76,7 +76,7 @@ class Updater(commands.Cog):
                         rankChange = True 
 
                     elif prev['rank'] != cur['rank']:
-                        change = numDict[cur['rank']] - numDict[prev['rank']]
+                        change = numDict[prev['rank']] - numDict[cur['rank']]
                         rankChange = True
 
                     elif prev['leaguePoints'] != cur['leaguePoints']:
