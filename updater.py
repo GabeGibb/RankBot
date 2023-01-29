@@ -88,7 +88,7 @@ class Updater(commands.Cog):
 
                     if rankChange:
                         if change > 0:
-                            msg = f'{key} just promotted to {cur["tier"]} {cur["rank"]}'
+                            msg = f'{key} just promoted to {cur["tier"]} {cur["rank"]}'
                         else:
                             msg = f'{key} just demoted to {cur["tier"]} {cur["rank"]}'
 
