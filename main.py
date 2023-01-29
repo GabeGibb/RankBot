@@ -37,7 +37,7 @@ async def on_ready():
     updater.channel = channel
     updater.lol_update.start()
     updater.val_update.start()
-    await updater.channel.send('Rank Bot now has permanent access to the league api!')
+    # await updater.channel.send('Rank Bot now has permanent access to the league api!')
 
 
 @bot.command()

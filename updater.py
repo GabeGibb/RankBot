@@ -44,8 +44,8 @@ class Updater(commands.Cog):
                 print(msg)
                 botMsg = discord.Embed(description=f"""VALORANT RANKED\n{msg}""", color=0xfa4454)
                 await self.channel.send(embed=botMsg)
-            except:
-                print(key, 'error')
+            except Exception as e:
+                print(key, e)
 
 
 
@@ -102,8 +102,8 @@ class Updater(commands.Cog):
                     print(msg)
                     botMsg = discord.Embed(description=f"""{mode}\n{msg}""", color=0x445fa5)
                     await self.channel.send(embed=botMsg)
-            except:
-                print(key, 'error')
+            except Exception as e:
+                print(key, e)
 
 
     def get_winsult(self):
