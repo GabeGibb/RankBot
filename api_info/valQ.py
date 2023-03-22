@@ -13,4 +13,4 @@ def get_val_info(username, tagline):
     return data
 
 
-# print(get_val_info('kachatakoowl', 'NA1'))
+# print(get_val_info('DogFoodLíd', 'NA1'))

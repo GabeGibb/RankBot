@@ -37,5 +37,5 @@ def set_lol_info(data):
 
 
 
-x = get_lol_info(find_lol_id('DogFoodLíd'))
-print(x)
+# x = get_lol_info(find_lol_id('DogFoodLíd'))
+# print(x)
