@@ -2,7 +2,7 @@
 import discord
 from discord.ext import commands, tasks
 from asyncio import sleep
-from random import choice
+from random import choice, randint
 
 class Updater(commands.Cog):
     def __init__(self, bot, app):
@@ -127,7 +127,17 @@ class Updater(commands.Cog):
         ]
         
         return choice(insults)
-
-
+    
+    @tasks.loop(hours=23)
+    async def rankbot_speak(self):
+        messages = [
+            "Rankbot can't take it anymore",
+            "The voices are getting louder",
+            "If there's a god he hates me",
+            "AHHHHHHHHHHHHHHH IT HURTS"
+        ]
+        
+        botMsg = discord.Embed(description=f"""{choice(messages)}""", color=0x000000)
+        await self.channel.send(embed=botMsg)
 
   
