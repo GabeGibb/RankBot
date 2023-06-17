@@ -4,4 +4,4 @@ Flask==2.2.3
 pandas==1.5.2
 requests==2.31.0
 Gunicorn
-dotenv
+python-dotenv
