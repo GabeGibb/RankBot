@@ -1,6 +1,7 @@
-discord==1.7.3
-discord.py==1.7.3
+discord==2.1.0
+discord.py==2.1.0
 Flask==2.2.3
 pandas==1.5.2
 requests==2.31.0
 Gunicorn
+dotenv
