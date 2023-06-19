@@ -55,7 +55,7 @@ async def status(ctx):
     
     await ctx.send(embed=msg)
 
-Thread(target=app.run, args=(TOKEN)).start()
+Thread(target=bot.run, args=(TOKEN)).start()
 # bot.run(TOKEN)
 
 # @bot.command()
