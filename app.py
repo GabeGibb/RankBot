@@ -9,6 +9,5 @@ def hello():
     return 'Bot is up and running'
 
 
+app.run(host='0.0.0.0')
 
-
-# app.run(host='0.0.0.0')
