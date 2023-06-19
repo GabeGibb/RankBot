@@ -1,5 +1,4 @@
-import main
-
+# from threading import Thread
 from flask import Flask
 
 app = Flask(__name__)
@@ -8,6 +7,10 @@ app = Flask(__name__)
 def hello():
     return 'Bot is up and running'
 
+# with app.app_context():
+#     import main
 
-app.run(host='0.0.0.0')
+# Thread(target=app.run, kwargs={'host': '0.0.0.0'}).start()
+# app.run(host='0.0.0.0')
 
+# import main

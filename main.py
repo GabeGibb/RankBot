@@ -55,6 +55,9 @@ async def status(ctx):
     
     await ctx.send(embed=msg)
 
+
+bot.run(TOKEN)
+
 # @bot.command()
 # async def add(ctx, game, userName):
 #     event = None
@@ -90,6 +93,5 @@ async def status(ctx):
 #     await ctx.send(embed=response)
 
 
-bot.run(TOKEN)
 
 
