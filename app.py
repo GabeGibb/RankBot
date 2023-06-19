@@ -1,4 +1,4 @@
-
+import main
 from flask import Flask
 
 app = Flask(__name__)
@@ -13,4 +13,3 @@ def hello():
 # Thread(target=app.run, kwargs={'host': '0.0.0.0'}).start()
 # app.run(host='0.0.0.0')
 
-# import main
