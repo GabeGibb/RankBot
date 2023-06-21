@@ -9,7 +9,7 @@ from discord.ext import commands
 
 from application.app import App
 from updater import Updater
-from threading import Thread
+
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
@@ -55,8 +55,8 @@ async def status(ctx):
     
     await ctx.send(embed=msg)
 
-Thread(target=bot.run, args=(TOKEN,)).start()
-# bot.run(TOKEN)
+
+bot.run(TOKEN)
 
 # @bot.command()
 # async def add(ctx, game, userName):
